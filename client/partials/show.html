@@ -1,0 +1,10 @@
+<div ng-show="tool_detail">
+    <div class="large-6 medium-6 small-12 columns">
+        <img src="https://googledrive.com/host/0BwbUYqYtCCqmaTQwZTdva2FzeDA/{{tool_detail['Main image file']}}" onerror="if (this.src != '/img/error.jpg') this.src = '/img/error.jpg';">
+    </div>
+    <div class="large-6 medium-6 small-12 columns" style="padding-top: 30px">
+        <h3 class="description" ng-bind="tool_detail['Description (EN)']"></h3>
+        <h4 class="link" ng-show="tool_detail"><i class="fa fa-barcode"></i> Part Number: <span class="description" ng-bind="tool_detail['MT Part No.']"></span></h4>
+        <h4 class="link" ng-show="tool_detail"><i class="fi-book"></i> Catalogue Page: <span class="description" ng-bind="tool_detail['Catalogue page']"></span></h4>
+    </div>
+</div>

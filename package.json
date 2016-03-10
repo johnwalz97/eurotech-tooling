@@ -1,0 +1,15 @@
+{
+  "name": "Eurotech-Tooling",
+  "version": "1.0.0",
+  "description": "Eurotech tooling website",
+  "main": "server.js",
+  "repository": "",
+  "author": "John Walz <johnwalz97@gmail.com",
+  "dependencies": {
+    "angular": "^1.4.7",
+    "body-parser": "^1.13.1",
+    "ejs": "1.0.0",
+    "express": "~4.10.0",
+    "mongoose": "^4.1.1"
+  }
+}

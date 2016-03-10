@@ -1,0 +1,33 @@
+h1, h2, h3, h4, h5, h6, p, label, span, a, button {
+   color: white !important;
+}
+body {
+    padding-top: 30px;
+    background: #181a1c;
+}
+.red {
+    background: #981000 !important;
+    color: white;
+}
+.red label {
+    color: white;
+}
+.menu {
+    font-size: 50px;
+    position: relative;
+    top: -20px;
+}
+.button-red {
+    background: #981000 !important;
+}
+.view {
+    background-color: #fff !important;
+    /*border-right: 10px black solid;*/
+    /*border-left: 10px black solid;*/
+}
+.description {
+    color: black !important;
+}
+.link {
+    color: #981000 !important;
+}

@@ -1,0 +1,33 @@
+var mongoose = require("mongoose");
+var ToolSchema = new mongoose.Schema({
+    'OEM': String,
+    'Compatible machines': String,
+    'Catagory': String,
+    'Catalogue page': String,
+    'MT Part No.': String,
+    'Description (EN)': String,
+    'Main image file': String,
+    'Spindle_Type': String,
+    'Ratio': String,
+    'RPM': Number,
+    'Max. Torque [Nm]': Number,
+    'Internal_Coolant': String,
+    'Pressure of internal coolant': String,
+    'External_Coolant': String,
+    'Internal coolant optional': String,
+    'Wrenches included': String,
+    'Wrenches not included': String,
+    'Reversible main/sub spindle': String,
+    'Number of tools': String,
+    'Diameter': String,
+    'Version (right/left/universal)': String,
+    'Turret type': String,
+    'Power intake': String,
+    'Frontal power intake': String,
+    'Size': String,
+    'Tool size': String,
+    'Interaxis': String,
+    'Detail accessory': String,
+    'Published': Number
+})
+var Tool = mongoose.model('Tool', ToolSchema);
