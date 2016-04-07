@@ -1,6 +1,13 @@
 ToolingApp.controller("searchController", function($scope, $location, searchFactory){
     $scope.searchParams = {};
     $scope.show_tool_detail = false;
+    if(searchFactory.tool){
+        $scope.tools = false;
+        $scope.tool = searchFactory.tool;
+    } else if(searchFactory.tools){
+        $scope.tool = false;
+        $scope.tools = searchFactory.tools;
+    }
     $scope.search = function(){
         if($location.path() != '/'){
             $location.path('/');

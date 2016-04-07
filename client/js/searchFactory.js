@@ -1,8 +1,9 @@
 ToolingApp.factory("searchFactory", function($location){
     var factory = {};
     
-    factory.tool = [];
-    factory.tools = [];
+    factory.tool = null;
+    factory.tools = null;
+    factory.tool_detail = null;
 
     factory.search = function(searchParams, callback){
         $.post(
@@ -31,14 +32,13 @@ ToolingApp.factory("searchFactory", function($location){
     }
     factory.show_detail = function(partNo){
         for(var i = 0; i < factory.tool.length; i++){
-            console.log(factory.tool[i]);
             if(factory.tool[i]['MT Part No.'] == partNo){
                 factory.tool_detail = factory.tool[i];
             }
         }
     }
     factory.get_tool_detail = function(){
-        return factory.tool_detail || null;
+        return factory.tool_detail;
     }
     
     return  factory;
