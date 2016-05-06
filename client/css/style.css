@@ -1,110 +1,131 @@
 h1, h2, h3, h4, h5, h6, p, label, span, a, button {
    color: white !important;
 }
+
 body {
     padding-top: 30px;
     background: #181a1c;
 }
+
 .red {
     background: #981000 !important;
     color: white;
 }
+
 .red label {
     color: white;
 }
+
 .menu {
     font-size: 50px;
     position: relative;
     top: -20px;
 }
+
 .button-red {
     background: #981000 !important;
 }
+
 .view {
     background-color: #fff !important;
     /*border-right: 10px black solid;*/
     /*border-left: 10px black solid;*/
 }
+
 .description {
     color: black !important;
 }
+
 .link {
     color: #981000 !important;
 }
-.tabs {
-  *zoom: 1;
-  margin-bottom: 0 !important; }
-  .tabs:before, .tabs:after {
-    content: " ";
-    display: table; }
-  .tabs:after {
-    clear: both; }
-  .tabs dd {
-    position: relative;
-    margin-bottom: 0 !important;
-    top: 1px;
-    float: right; }
-    .tabs dd > a {
-      display: block;
-      background: #efefef;
-      color: #222222;
-      padding-top: 0.88889rem;
-      padding-right: 1.77778rem;
-      padding-bottom: 0.94444rem;
-      padding-left: 1.77778rem;
-      font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif !important;
-      font-size: 0.88889rem; }
-      .tabs dd > a:hover {
-        background: #e2e2e2; }
-    .tabs dd.active a {
-      background: white; }
-  .tabs.radius dd:first-child a {
-    -moz-border-radius-bottomleft: 3px;
-    -moz-border-radius-topleft: 3px;
-    -webkit-border-bottom-left-radius: 3px;
-    -webkit-border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
-    border-top-left-radius: 3px; }
-  .tabs.radius dd:last-child a {
-    -moz-border-radius-topright: 3px;
-    -moz-border-radius-bottomright: 3px;
-    -webkit-border-top-right-radius: 3px;
-    -webkit-border-bottom-right-radius: 3px;
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px; }
-  .tabs.vertical dd {
-    position: inherit;
-    float: none;
+
+.tabsdemoDynamicHeight md-content {
+    background-color: transparent !important; 
+}
+
+.tabsdemoDynamicHeight md-content md-tabs {
+    background: #f6f6f6;
+    border: 1px solid #e1e1e1;
+}
+
+.tabsdemoDynamicHeight md-content md-tabs md-tabs-wrapper {
+    background: white; 
+}
+
+.tabsdemoDynamicHeight md-content h1:first-child {
+    margin-top: 0; 
+}
+    
+#em {
+    width:1em;
+    height:1em;
+    overflow:hidden; 
+    visibility:hidden;
+}
+
+/*#right-menu {*/
+/*    position: fixed;*/
+/*    right: 0px;*/
+/*    top: 0px;*/
+/*    height: 100%;*/
+/*    width: 25%;*/
+/*    background-color: black;*/
+/*    z-index: 99;*/
+/*}*/
+
+#menu-list {
+    text-align: center;
+}
+
+#menu-list li {
+    list-style-type: none;
+}
+
+#menu-list a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none !important;
+    font-size: 32px;
+    color: #981000 !important;
     display: block;
-    top: auto; }
+    transition: .3s;
+}
 
-.tabs-content {
-  *zoom: 1;
-  margin-bottom: 1.33333rem; }
-  .tabs-content:before, .tabs-content:after {
-    content: " ";
-    display: table; }
-  .tabs-content:after {
-    clear: both; }
-  .tabs-content > .content {
-    display: none;
-    float: right;
-    padding: 0.83333rem 0; }
-    .tabs-content > .content.active {
-      display: block; }
-    .tabs-content > .content.contained {
-      padding: 0.83333rem; }
-  .tabs-content.vertical {
-    display: block; }
-    .tabs-content.vertical > .content {
-      padding: 0 0.83333rem; }
+#nav-toggle span, #nav-toggle span:before, #nav-toggle span:after {
+  cursor: pointer;
+  border-radius: 1px;
+  height: 5px;
+  width: 35px;
+  background: white;
+  position: absolute;
+  display: block;
+  content: '';
+}
 
-@media only screen and (min-width:40.063em) {
-  .tabs.vertical {
-    width: 20%;
-    float: right;
-    margin-bottom: 1.25rem; }
-  .tabs-content.vertical {
-    width: 80%;
-    float: right;
-    margin-right: -1px; } }
+#nav-toggle span:before {
+  top: -10px;
+}
+
+#nav-toggle span:after {
+  bottom: -10px; 
+}
+
+#nav-toggle span, #nav-toggle span:before, #nav-toggle span:after {
+  transition: all 500ms ease-in-out;
+}
+
+#nav-toggle.active span {
+  background-color: transparent;
+}
+
+#nav-toggle.active span:before, #nav-toggle.active span:after {
+  top: 0;
+}
+
+#nav-toggle.active span:before {
+  transform: rotate(45deg);
+}
+
+#nav-toggle.active span:after {
+  transform: rotate(-45deg);
+}

@@ -9,9 +9,10 @@ module.exports = {
             res.json({error: 'Incomplete search parameters...'});
             return;
         }
-        result = [];
-        pages = [];
-        Tool.find({'OEM': req.body.make}, function(err, tools){
+        var make = 'BIGLIA';
+        var result = [];
+        var pages = [];
+        Tool.find({'OEM': make}, function(err, tools){
             for(var i = 0; i < tools.length; i++){
                 if(tools[i]['Compatible machines'].indexOf(req.body.model) >= 0){
                     if(tools[i].Catagory == req.body.category || req.body.category == ""){

@@ -11,26 +11,28 @@
 </div>
 <div ng-show="tool">
     <a class="link" ng-click="go_back()">< < Go Back</a>
-    <table class="responsive table">
-        <thead>
-            <th>MT Part No.</th>
-            <th>Spindle</th>
-            <th>Ratio</th>
-            <th>Int. Coolant</th>
-            <th>Ext. Coolant</th>
-            <th>Actions</th>
-        </thead>
-        <tbody>
-            <tr ng-repeat="showTool in tool">
-                {{showTool}}
-                <td ng-bind="showTool['MT Part No.']"></td>
-                <td ng-bind="showTool['Spindle_Type']"></td>
-                <td ng-bind="showTool['Ratio']"></td>
-                <td ng-bind="showTool['Internal_Coolant']"></td>
-                <td ng-bind="showTool['External_Coolant']"></td>
-                <td><i style="cursor: pointer; display: block" class="fi-zoom-in" ng-click="details(showTool['MT Part No.'])">View</i></td>
-            </tr>
-        </tbody>
-    </table>
+    <div>
+        <table class="responsive table">
+            <thead>
+                <th>MT Part No.</th>
+                <th>Spindle</th>
+                <th>Ratio</th>
+                <th>Int. Coolant</th>
+                <th>Ext. Coolant</th>
+                <th>Actions</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="showTool in tool">
+                    {{showTool}}
+                    <td ng-bind="showTool['MT Part No.']"></td>
+                    <td ng-bind="showTool['Spindle_Type']"></td>
+                    <td ng-bind="showTool['Ratio']"></td>
+                    <td ng-bind="showTool['Internal_Coolant']"></td>
+                    <td ng-bind="showTool['External_Coolant']"></td>
+                    <td><i style="cursor: pointer; display: block" class="fi-zoom-in" ng-click="details(showTool['MT Part No.'])">View</i></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <a class="link" ng-click="go_back()">< < Go Back</a>
 </div>

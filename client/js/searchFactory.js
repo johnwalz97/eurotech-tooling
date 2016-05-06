@@ -4,7 +4,7 @@ ToolingApp.factory("searchFactory", function($location){
     factory.tool = null;
     factory.tools = null;
     factory.tool_detail = null;
-
+    
     factory.search = function(searchParams, callback){
         $.post(
             '/search',

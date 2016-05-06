@@ -1,41 +1,85 @@
 <a class="link" ng-click="go_back()">< < Go Back</a>
 <div ng-show="tool_detail">
+    <script>
+        $(function() {
+          $("#tabs" ).tabs();
+        });
+    </script>
     <div class="row">
         <div class="large-6 medium-6 small-12 columns">
-            <img src="https://googledrive.com/host/0BwbUYqYtCCqmaTQwZTdva2FzeDA/{{tool_detail['Main image file']}}" onerror="if (this.src != '/img/error.jpg') this.src = '/img/error.jpg';">
+          <span id="tool_img_wrap" style="display: inline-block; position: relative;">
+            <img id="tool_img" src="https://googledrive.com/host/0BwbUYqYtCCqmaTQwZTdva2FzeDA/{{tool_detail['Main image file']}}" onload="$('#tool_img_wrap').zoom({touch: false, magnify: '1.5'});" onerror="if (this.src != '/img/error.jpg') this.src = '/img/error.jpg';">
+          </span>
         </div>
         <div class="large-6 medium-6 small-12 columns" style="padding-top: 30px">
             <h3 class="description" ng-bind="tool_detail['Description (EN)']"></h3>
             <h4 class="link" ng-show="tool_detail"><i class="fa fa-barcode"></i> Part Number: <span class="description" ng-bind="tool_detail['MT Part No.']"></span></h4>
             <h4 class="link" ng-show="tool_detail"><i class="fi-book"></i> Catalogue Page: <span class="description" ng-bind="tool_detail['Catalogue page']"></span></h4>
+            <hr>
             <h5 class="description">Main Specifications</h5>
-            <p class="description" ng-bind="tool_detail['']"></p>
-            <p class="description" ng-bind="tool_detail['']"></p>
-            <p class="description" ng-bind="tool_detail['']"></p>
-            <p class="description" ng-bind="tool_detail['']"></p>
-            <p class="description" ng-bind="tool_detail['']"></p>
-            <p class="description" ng-bind="tool_detail['']"></p>
+            <ul>
+              <li><p class="description"><strong>Spindle: </strong><span class="description" ng-bind="tool_detail['Spindle_Type']"></span></p></li>
+              <li><p class="description"><strong>Part No.: </strong><span class="description" ng-bind="tool_detail['MT Part No.']"></span></p></li>
+              <li><p class="description"><strong>Ratio: </strong><span class="description" ng-bind="tool_detail['Ratio']"></span></p></li>
+              <li><p class="description"><strong>RPM: </strong><span class="description" ng-bind="tool_detail['RPM']"></span></p></li>
+              <li><p class="description"><strong>Max Torque: </strong><span class="description" ng-bind="tool_detail['Max. Torque [Nm]']"></span></p></li>
+              <li><p class="description"><strong>External cooling: </strong><span class="description" ng-bind="tool_detail['External_Coolant']"></span></p></li>
+            </ul>
+            <hr>
+            <div class="large-12 columns">
+              <h4 class="large-6 small-12 columns row description">Quantity:</h4>
+              <select class="large-6 small-12 columns row" ng-model="quantity">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+              <button class="button button-red row large-6 small-8 columns" ng-click="add_to_cart()"><i class="fa fa-shopping-cart"></i> &nbsp Add To Quote Request</button>
+            </div>
         </div>
     </div>
-    <ul class="tabs" data-tab>
-      <li class="tab-title active"><a href="#panel1">Tab 1</a></li>
-      <li class="tab-title"><a href="#panel2">Tab 2</a></li>
-      <li class="tab-title"><a href="#panel3">Tab 3</a></li>
-      <li class="tab-title"><a href="#panel4">Tab 4</a></li>
-    </ul>
-    <div class="tabs-content">
-      <div class="content active" id="panel1">
-        <p>This is the first panel of the basic tab example. You can place all sorts of content here including a grid.</p>
+    <hr>
+    <div class="row">
+      <div class="links row">
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <button class="button button-red" ng-click="tab = 1">Specifications</button>
+        <button class="button button-red" ng-click="tab = 2">Accessories</button>
+        <button class="button button-red" ng-click="tab = 3">Compatible Machines</button>
       </div>
-      <div class="content" id="panel2">
-        <p>This is the second panel of the basic tab example. This is the second panel of the basic tab example.</p>
-      </div>
-      <div class="content" id="panel3">
-        <p>This is the third panel of the basic tab example. This is the third panel of the basic tab example.</p>
-      </div>
-      <div class="content" id="panel4">
-        <p>This is the fourth panel of the basic tab example. This is the fourth panel of the basic tab example.</p>
+      <div id="tabs">
+        <div class="row">
+            <div class="large-6 small-12 columns" ng-show="tab == 1">
+              <ul>
+                <li><p class="description"><strong>Spindle: </strong><span class="description" ng-bind="tool_detail['Spindle_Type']"></span></p></li>
+                <li><p class="description"><strong>Part No.: </strong><span class="description" ng-bind="tool_detail['MT Part No.']"></span></p></li>
+                <li><p class="description"><strong>Ratio: </strong><span class="description" ng-bind="tool_detail['Ratio']"></span></p></li>
+                <li><p class="description"><strong>RPM: </strong><span class="description" ng-bind="tool_detail['RPM']"></span></p></li>
+                <li><p class="description"><strong>Max Torque: </strong><span class="description" ng-bind="tool_detail['Max. Torque [Nm]']"></span></p></li>
+                <li><p class="description"><strong>External cooling: </strong><span class="description" ng-bind="tool_detail['External_Coolant']"></span></p></li>
+              </ul>
+            </div>
+            <div class="large-6 small-12 columns" ng-show="tab == 1">
+              <ul>
+                <li><p class="description"><strong>Tool Category: </strong><span class="description" ng-bind="tool_detail['Catagory']"></span></p></li>
+                <li><p class="description"><strong>Wrenches Included with Tool: </strong><span class="description">{{tool_detail['Wrenches included'] || 'None'}}</span></p></li>
+                <li><p class="description"><strong>Internal Coolant Optional: </strong><span class="description">{{tool_detail['Internal coolant optional'] || 'No'}}</span></p></li>
+              </ul>
+            </div>
+        </div>
+        <div class="row" ng-show="tab == 2">
+          <p class="description">Accessories coming soon!</p>
+        </div>
+        <div class="row" ng-show="tab == 3">
+          <button style="margin-right: 7px" class="button success tiny" ng-repeat="machine in tool_detail['Compatible machines'].split(',')"><i class="fa fa-check"></i>&nbsp <span ng-bind="machine"></span></button>
+        </div>
       </div>
     </div>
+    <hr>
     <a class="link" ng-click="go_back()">< < Go Back</a>
 </div>

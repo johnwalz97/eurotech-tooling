@@ -10,12 +10,16 @@
     <link type="text/css" media="screen" rel="stylesheet" href="/css/responsive-tables.css" />
   </head>
   <body ng-controller="searchController">
-    <div class="small-6 large-6 columns">
+    <div id="top-menu" style="display: none">
+      <ul class="large-12 large-centered small-12 small-centered columns" id="menu-list">
+        <li><a class="title">My Cart</a></li>
+      </ul>
+    </div>
+    <div id="em"></div>
+    <div class="small-6 large-6 columns end">
       <img src="/img/logo.png">
     </div>
-    <div class="small-6 large-6 columns">
-      <a class="float-right"><i class="fi-list menu"></i></a>
-    </div>
+    <a id="nav-toggle" href="#"><span></span></a>
     <div class="medium-6 medium-offset-6 large-5 large-offset-7 columns">
       <div class="input-group">
         <input class="input-group-field" type="text" placeholder="Search by name or product no.">
@@ -30,63 +34,46 @@
         <hr>
         <form>
           <label>Make
-            <select ng-model="searchParams.make">
-              <option value="">Select the machine manufacturer</option>
-              <option value="BIGLIA">Biglia</option>
+            <select ng-options="make for make in makes" ng-model="searchParams.make">
+              <option value="">-- choose manufacturer --</option>
             </select>
           </label>
           <label>Model
-            <select ng-model="searchParams.model">
-              <option value="">Select the machine model</option>
-              <option value="B1200">B1200</option>
-              <option value="B1250 16 STAZIONI">B1250 16 STAZIONI</option>
-              <option value="B301">B301</option>
-              <option value="B436">B436</option>
-              <option value="B445">B445</option>
-              <option value="B446">B446</option>
-              <option value="B465">B465</option>
-              <option value="B470">B470</option>
-              <option value="B501 Y/S">B501 Y/S</option>
-              <option value="B510">B510</option>
-              <option value="B545">B545</option>
-              <option value="B550">B550</option>
-              <option value="B565">B565</option>
-              <option value="B650">B650</option>
-              <option value="B658">B658</option>
-              <option value="B745">B745</option>
-              <option value="B750 16 STAZIONI">B750 16 STAZIONI</option>
-              <option value="B765">B765</option>
-              <option value="BV210">BV210</option>
-              <option value="BV315">BV315</option>
+            <select ng-options="model.value as model.label for model in models" ng-model="searchParams.model">
+              <option value="">-- choose model --</option>
             </select>
           </label>
           <label>Category
-            <select ng-model="searchParams.category">
-              <option value="">Select the tool category</option>
-              <option value="Driven">Driven</option>
-              <option value="Static">Static</option>
-              <option value="">All</option>
+            <select ng-options="category for category in categories" ng-model="searchParams.category">
+              <option value="">-- choose category --</option>
             </select>
           </label>
           <button class="button" ng-click="search()">Search</button>
         </form>
       </div>
     </div>
-    <div ng-view class="large-9 medium-9 small-12 columns view"></div>
+    <div id="view" ng-view class="large-9 medium-9 small-12 columns view"></div>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/what-input.min.js"></script>
+    <script src="/js/modernizr.js"></script>
     <script src="/js/foundation.js"></script>
     <script src="/js/responsive-tables.js"></script>
     <script>
       $(document).ready(function() {
         $(document).foundation();
+        $("#top-menu").height($(window).height());
+        document.querySelector( "#nav-toggle" ).addEventListener( "click", function() {
+          this.classList.toggle( "active" );
+        });
       })
     </script>
-    <script src="https://code.angularjs.org/1.4.2/angular.js"></script>
-    <script src="https://code.angularjs.org/1.4.2/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular-route.min.js"></script>
     <script src="/js/app.js"></script>
     <script src="/js/searchController.js"></script>
     <script src="/js/toolController.js"></script>
     <script src="/js/searchFactory.js"></script>
+    <script src="/js/zoom.js"></script>
   </body>
 </html>
