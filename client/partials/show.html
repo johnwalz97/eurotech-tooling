@@ -1,5 +1,4 @@
-<a class="link" ng-click="go_back()">< < Go Back</a>
-<div ng-show="tool_detail">
+<div id="tool_detail_div" ng-show="tool_detail">
     <script>
         $(function() {
           $("#tabs" ).tabs();
@@ -40,21 +39,20 @@
                 <option value="9">9</option>
                 <option value="10">10</option>
               </select>
-              <button class="button button-red row large-6 small-8 columns" ng-click="add_to_cart()"><i class="fa fa-shopping-cart"></i> &nbsp Add To Quote Request</button>
+              <button class="button button-red row large-6 small-8 columns" ng-click="add_to_cart()"><i class="fa fa-shopping-cart"></i> &nbsp Add To Cart</button>
             </div>
         </div>
     </div>
     <hr>
-    <div class="row">
+    <div class="row" id="tabs_row">
       <div class="links row">
         <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <button class="button button-red" ng-click="tab = 1">Specifications</button>
-        <button class="button button-red" ng-click="tab = 2">Accessories</button>
-        <button class="button button-red" ng-click="tab = 3">Compatible Machines</button>
+        <button class="button tab-btn button-red" ng-click="tab = 1">Specifications</button>
+        <button class="button tab-btn button-red" ng-click="tab = 2">Compatible Machines</button>
       </div>
       <div id="tabs">
-        <div class="row">
-            <div class="large-6 small-12 columns" ng-show="tab == 1">
+        <div class="row tab_body" ng-show="tab == 1">
+            <div class="large-6 small-12 columns">
               <ul>
                 <li><p class="description"><strong>Spindle: </strong><span class="description" ng-bind="tool_detail['Spindle_Type']"></span></p></li>
                 <li><p class="description"><strong>Part No.: </strong><span class="description" ng-bind="tool_detail['MT Part No.']"></span></p></li>
@@ -64,7 +62,7 @@
                 <li><p class="description"><strong>External cooling: </strong><span class="description" ng-bind="tool_detail['External_Coolant']"></span></p></li>
               </ul>
             </div>
-            <div class="large-6 small-12 columns" ng-show="tab == 1">
+            <div class="large-6 small-12 columns">
               <ul>
                 <li><p class="description"><strong>Tool Category: </strong><span class="description" ng-bind="tool_detail['Catagory']"></span></p></li>
                 <li><p class="description"><strong>Wrenches Included with Tool: </strong><span class="description">{{tool_detail['Wrenches included'] || 'None'}}</span></p></li>
@@ -72,14 +70,10 @@
               </ul>
             </div>
         </div>
-        <div class="row" ng-show="tab == 2">
-          <p class="description">Accessories coming soon!</p>
-        </div>
-        <div class="row" ng-show="tab == 3">
+        <div class="row tab_body" ng-show="tab == 2">
           <button style="margin-right: 7px" class="button success tiny" ng-repeat="machine in tool_detail['Compatible machines'].split(',')"><i class="fa fa-check"></i>&nbsp <span ng-bind="machine"></span></button>
         </div>
       </div>
     </div>
     <hr>
-    <a class="link" ng-click="go_back()">< < Go Back</a>
 </div>

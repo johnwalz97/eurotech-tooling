@@ -1,6 +1,13 @@
-ToolingApp.factory("searchFactory", function($location){
+ToolingApp.factory("searchFactory", function($location, $window){
     var factory = {};
     
+    if(window.localStorage['cart']){
+        factory.cart = JSON.parse(window.localStorage['cart']);
+    } else {
+        factory.cart = [];    
+    }
+    
+    factory.searched = false;
     factory.tool = null;
     factory.tools = null;
     factory.tool_detail = null;
@@ -17,15 +24,27 @@ ToolingApp.factory("searchFactory", function($location){
         )
     }
     
+    factory.text_search = function(searchParams, callback){
+        $.post(
+            '/search/text',
+            searchParams,
+            function(response){
+                factory.tools = response;
+                callback(response);
+            },
+            'json'
+        )
+    }
+    
     factory.showTools = false;
     
-    factory.searchPage = function(page, callback){
+    factory.searchPage = function(page){
         $.post(
             '/showTool',
             {page: page},
             function(response){
                 factory.tool = response;
-                callback(response);
+                $window.location.assign('/#/search');
             },
             'json'
         )
@@ -36,9 +55,7 @@ ToolingApp.factory("searchFactory", function($location){
                 factory.tool_detail = factory.tool[i];
             }
         }
-    }
-    factory.get_tool_detail = function(){
-        return factory.tool_detail;
+        $window.location.assign('/#/show');
     }
     
     return  factory;

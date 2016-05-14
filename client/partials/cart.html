@@ -1,0 +1,75 @@
+<div id="cart_full" class="row row_white">
+    <div class="table-div">
+        <table class="table">
+            <thead>
+                <th></th>
+                <th>Item #</th>
+                <th>Title</th>
+                <th>Quantity</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in cart">
+                    <td style="cursor: pointer;" ng-click="remove(item.id)"><i class="red_icon fi-x"></i></td>
+                    <td ng-bind="item.id"></td>
+                    <td ng-bind="item.title"></td>
+                    <td><input type="number" ng-model="item.quantity"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row_white">
+        <div class="small-12 small-centered columns row_white" style="text-align:center">
+            <h4 class="description">Please Enter Your Information</h4>
+        </div>
+        <div class="row_white small-12 columns">
+            <form accept-charset="UTF-8" action="https://m413.infusionsoft.com/app/form/process/55b093f5f3f1d6772aad6322d30153de" class="infusion-form" method="POST">
+                <input name="inf_form_xid" type="hidden" value="55b093f5f3f1d6772aad6322d30153de" />
+                <input name="inf_form_name" type="hidden" value="Quote Request" />
+                <input name="infusionsoft_version" type="hidden" value="1.53.0.56" />
+                <div class="infusion-field">
+                    <label class="infusion_label" for="inf_field_FirstName">First Name *</label>
+                    <input ng-model="user_name" class="infusion-field-input-container" id="inf_field_FirstName" name="inf_field_FirstName" type="text" />
+                </div>
+                <div class="infusion-field">
+                    <label class="infusion_label" for="inf_field_Email">Email *</label>
+                    <input ng-model="user_email" class="infusion-field-input-container" id="inf_field_Email" name="inf_field_Email" type="text" />
+                </div>
+                <div class="infusion-field">
+                    <label class="infusion_label" for="inf_field_Phone1">Phone 1</label>
+                    <input ng-model="user_phone" class="infusion-field-input-container" id="inf_field_Phone1" name="inf_field_Phone1" type="text" />
+                </div>
+                <div class="infusion-field">
+                    <label class="infusion_label" for="inf_field_Address2Street1">Shipping Street Address 1</label>
+                    <input ng-model="user_address" class="infusion-field-input-container" id="inf_field_Address2Street1" name="inf_field_Address2Street1" type="text" />
+                </div>
+                <div class="infusion-field">
+                    <label class="infusion_label" for="inf_field_City2">Shipping City</label>
+                    <input ng-model="user_city" class="infusion-field-input-container" id="inf_field_City2" name="inf_field_City2" type="text" />
+                </div>
+                <div class="infusion-field">
+                    <label class="infusion_label" for="inf_field_State2">Shipping State</label>
+                    <input ng-model="user_state" class="infusion-field-input-container" id="inf_field_State2" name="inf_field_State2" type="text" />
+                </div>
+                <div class="infusion-field">
+                    <label class="infusion_label" for="inf_field_PostalCode2">Shipping Postal Code</label>
+                    <input ng-model="user_zip" class="infusion-field-input-container" id="inf_field_PostalCode2" name="inf_field_PostalCode2" type="text" />
+                </div>
+                <div class="infusion-field" style="display: none">
+                    <input class="infusion-field-input-container" ng-value="partNos" id="inf_custom_PartNumbers" name="inf_custom_PartNumbers" type="text" />
+                </div>
+                <div class="infusion-submit">
+                    <input class="button red" type="submit" value="Submit" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="cart_empty" style="display: none">
+    <h2>Your cart is empty</h2>
+</div>
+<script>
+    function cart_empty(){
+        $("#cart_empty").show();
+        $("#cart_full").hide();
+    }
+</script>

@@ -5,54 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/foundation/foundation.css">  
     <link rel="stylesheet" href="/css/foundation/foundation-icons.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link type="text/css" media="screen" rel="stylesheet" href="/css/responsive-tables.css" />
   </head>
   <body ng-controller="searchController">
     <div id="top-menu" style="display: none">
-      <ul class="large-12 large-centered small-12 small-centered columns" id="menu-list">
-        <li><a class="title">My Cart</a></li>
+      <ul class="small-9 small-centered medium-7 medium-centered large-6 large-centered columns" id="menu-list">
+        <li class="menu-item-li active"><a onclick="click_menu()" class="title" href="/#/">HOME</a></li>
+        <li class="menu-item-li"><a onclick="click_menu()" class="sliding-middle-out title" href="http://www.eurotechelite.com/">EUROTECH</a></li>
+        <li class="menu-item-li"><a onclick="click_menu()" href="#/cart" class="sliding-middle-out title">CART</a></li>
       </ul>
+      <div class="copyright">
+        <span class="icon">©</span> <span class="text">Website copyright <a style="text-decoration: underline" href="http://johnwwalz.com/">John Walz</a></span>
+      </div>
     </div>
-    <div id="em"></div>
-    <div class="small-6 large-6 columns end">
-      <img src="/img/logo.png">
-    </div>
-    <a id="nav-toggle" href="#"><span></span></a>
-    <div class="medium-6 medium-offset-6 large-5 large-offset-7 columns">
-      <div class="input-group">
-        <input class="input-group-field" type="text" placeholder="Search by name or product no.">
-        <div class="input-group-button">
-          <button class="button button-red"><i class="fi-magnifying-glass"></i></button>
+    <div id="body">
+      <div id="em"></div>
+      <div class="small-6 large-6 columns">
+        <img src="/img/logo.png">
+      </div>
+      <div class="small-6 large-6 columns">
+        <a id="nav-toggle" onclick="click_menu()" class="menu float-right"><span></span></a>
+        <a href="#/cart" id="cart" class="cart float-right"><i style="font-size: 34px" class="fa fa-shopping-cart"></i>(<span id="cart_quantity_span" ng-bind="cart_quantity"></span> item<span ng-if="cart_quantity > 1">s</span>)</a>
+      </div>
+      <div class="medium-6 medium-offset-6 large-5 large-offset-7 columns">
+        <div class="input-group">
+          <input class="input-group-field" type="text" ng-enter="text_search_function()" ng-model="text_search" placeholder="Search by name or product no.">
+          <div class="input-group-button">
+            <button ng-click="text_search_function()" class="button button-red"><i class="fi-magnifying-glass"></i></button>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="large-3 medium-3 small-12 columns">
-      <div class="callout red">
-        <h5>Advanced Tool Search</h5>
-        <hr>
-        <form>
-          <label>Make
-            <select ng-options="make for make in makes" ng-model="searchParams.make">
-              <option value="">-- choose manufacturer --</option>
-            </select>
-          </label>
-          <label>Model
-            <select ng-options="model.value as model.label for model in models" ng-model="searchParams.model">
-              <option value="">-- choose model --</option>
-            </select>
-          </label>
-          <label>Category
-            <select ng-options="category for category in categories" ng-model="searchParams.category">
-              <option value="">-- choose category --</option>
-            </select>
-          </label>
-          <button class="button" ng-click="search()">Search</button>
-        </form>
+      <div class="large-3 medium-3 small-12 columns">
+        <div class="callout red">
+          <h5>Advanced Tool Search</h5>
+          <hr>
+          <form>
+            <label>Make
+              <select ng-options="make for make in makes" ng-model="searchParams.make">
+                <option value="">-- choose manufacturer --</option>
+              </select>
+            </label>
+            <label>Model
+              <select ng-options="model.value as model.label for model in models" ng-model="searchParams.model">
+                <option value="">-- choose model --</option>
+              </select>
+            </label>
+            <label>Category
+              <select ng-options="category for category in categories" ng-model="searchParams.category">
+                <option value="">-- choose category --</option>
+              </select>
+            </label>
+            <button class="button" ng-click="search()">Search</button>
+          </form>
+        </div>
       </div>
+      <div id="view" ng-view class="large-9 medium-9 small-12 columns view"></div>
     </div>
-    <div id="view" ng-view class="large-9 medium-9 small-12 columns view"></div>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/what-input.min.js"></script>
     <script src="/js/modernizr.js"></script>
@@ -62,17 +73,31 @@
       $(document).ready(function() {
         $(document).foundation();
         $("#top-menu").height($(window).height());
-        document.querySelector( "#nav-toggle" ).addEventListener( "click", function() {
-          this.classList.toggle( "active" );
-        });
       })
+      $("#nav-toggle, .menu-item-li").click(function() {
+        $("#nav-toggle").toggleClass("active");
+      });
+      var menu_closed = true;
+      function click_menu(){
+        if(menu_closed){
+          $("#top-menu").slideDown("slow");
+          menu_closed = false;
+        } else {
+          $("#top-menu").slideUp("slow");
+          menu_closed = true;
+        }
+        var top_margin = ($(window).height() - $("#menu-list").height()) / 2;
+        $("#menu-list").css('margin-top', top_margin + "px");
+      }
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular-route.min.js"></script>
     <script src="/js/app.js"></script>
     <script src="/js/searchController.js"></script>
+    <script src="/js/toolsController.js"></script>
     <script src="/js/toolController.js"></script>
+    <script src="/js/cartController.js"></script>
     <script src="/js/searchFactory.js"></script>
     <script src="/js/zoom.js"></script>
   </body>

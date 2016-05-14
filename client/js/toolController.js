@@ -1,24 +1,35 @@
-ToolingApp.controller("toolController", function($scope, $location, searchFactory){
-    $scope.tool_detail = searchFactory.get_tool_detail();
-    $scope.cart = [];
+ToolingApp.controller("toolController", function($scope, $window, $rootScope, $location, searchFactory){
+    $scope.tool_detail = searchFactory.tool_detail;
     $scope.quantity;
+
     if($scope.tool_detail == null){
         $location.path('/');
     }
-    $scope.go_back = function(){
-        $location.path('/');
+    
+    if($(window).width() <= ($('#em').width() * 40)){
+        var ElementTop = $('#view').position().top;
+        $('body').animate({scrollTop: ElementTop},500);
     }
+
     $scope.add_to_cart = function(){
         var push = true;
-        for(var i = 0; i < $scope.cart.length; i++){
-            if($scope.cart[i].id == $scope.tool_detail._id){
-                $scope.cart[i].quantity += ($scope.quantity || 1);
+        for(var i = 0; i < searchFactory.cart.length; i++){
+            if(searchFactory.cart[i].id == $scope.tool_detail['MT Part No.']){
+                searchFactory.cart[i].quantity = (parseInt(searchFactory.cart[i].quantity) + parseInt($scope.quantity || 1));
+                window.localStorage['cart'] = JSON.stringify(searchFactory.cart);
                 push = false;
             }
         }
-        if(push)
-            $scope.cart.push({id: $scope.tool_detail._id, quantity: ($scope.quantity || 1)})
-        console.log($scope.cart);
+        if(push){
+            var cart_push = {id: $scope.tool_detail['MT Part No.'], title: $scope.tool_detail['Description (EN)'], quantity: ($scope.quantity || 1)};
+            searchFactory.cart.push(cart_push);
+            window.localStorage['cart'] = JSON.stringify(searchFactory.cart);
+        }
+        
+        $rootScope.cart_quantity = searchFactory.cart.length;
+        
+        $window.location.assign('/#/cart');
     }
+    
     $scope.tab = 1;
 })

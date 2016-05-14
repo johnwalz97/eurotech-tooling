@@ -1,5 +1,8 @@
-ToolingApp.controller("searchController", function($scope, $location, searchFactory){
+ToolingApp.controller("searchController", function($scope, $rootScope, $location, searchFactory){
+    $rootScope.cart_quantity = searchFactory.cart.length;
     $scope.searchParams = {};
+    $scope.text_search;
+    $scope.cart_quantity = $rootScope.cart_quantity;
     
     $scope.makes = ['Biglia'];
     $scope.models = [{
@@ -69,27 +72,54 @@ ToolingApp.controller("searchController", function($scope, $location, searchFact
     $scope.searchParams.model = $scope.models[0].value;
     $scope.searchParams.category = $scope.categories[1];
     
-    $scope.show_tool_detail = false;
-    if(searchFactory.tool){
-        $scope.tools = false;
-        $scope.tool = searchFactory.tool;
-    } else if(searchFactory.tools){
-        $scope.tool = false;
-        $scope.tools = searchFactory.tools;
-    }
+    $scope.tools = searchFactory.tools;
+    
+    setInterval(function(){
+        if($scope.cart_quantity != $rootScope.cart_quantity){
+            $scope.cart_quantity = $rootScope.cart_quantity;
+            $scope.$apply();
+        }}, 100)
+    
     $scope.search = function(){
         if($location.path() != '/'){
             $location.path('/');
         }
-        $scope.tool = false;
+        searchFactory.searched = true;
+        
         searchFactory.search(
             $scope.searchParams, 
             function(response){
                 if(!response.error){
                     console.log(response);
-                    if($(window).width() <= ($('#em').width() * 40))
-                    var ElementTop = $('#view').position().top;
-                    $('body').animate({scrollTop: ElementTop},1500);
+                    if($(window).width() <= ($('#em').width() * 40)){
+                        var ElementTop = $('#view').position().top;
+                        $('body').animate({scrollTop: ElementTop},500);
+                    }
+                    $scope.tools = response;
+                    $scope.$apply();
+                }
+            }
+        );
+    }
+    
+    $scope.click_cart = function(){
+        console.log($rootScope);
+        console.log($scope.cart_quantity);
+    }
+    
+    $scope.text_search_function = function(){
+        if($location.path() != '/'){
+            $location.path('/');
+        }
+        searchFactory.text_search(
+            {text: $scope.text_search}, 
+            function(response){
+                if(!response.error){
+                    console.log(response);
+                    if($(window).width() <= ($('#em').width() * 40)){
+                        var ElementTop = $('#view').position().top;
+                        $('body').animate({scrollTop: ElementTop},500);
+                    }
                     $scope.tools = response;
                     $scope.$apply();
                 }
@@ -97,19 +127,6 @@ ToolingApp.controller("searchController", function($scope, $location, searchFact
         );
     }
     $scope.show = function(page){
-        searchFactory.searchPage(page, function(response){
-            $scope.tools = false;
-            $scope.tool = response;
-            $scope.$apply();
-            window.redrawTables();
-        });
-    }
-    $scope.details = function(partNo){
-        searchFactory.show_detail(partNo);
-        $location.path('/show');
-    }
-    $scope.go_back = function(){
-        $scope.tool = false;
-        $scope.tools = searchFactory.tools;
+        searchFactory.searchPage(page);
     }
 });

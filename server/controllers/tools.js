@@ -27,6 +27,16 @@ module.exports = {
         });
     },
     
+    text_search: function(req, res){
+        Tool.find({$text: {$search: req.body.text}}, {score: {$meta: "textScore"}}).sort({score:{$meta:"textScore"}}).exec(function(err, tools){
+            if(err){
+                res.json(err);
+            } else {
+                res.json(tools);
+            }
+        });
+    },
+    
     show: function(req, res){
         Tool.find({'Catalogue page': req.body.page}, function(err, tools){
             if(err){

@@ -1,38 +1,13 @@
-<div ng-repeat="tool in tools">
-    <div class="large-2 medium-3 small-4 columns">
-        <img style="margin-bottom: 10px" src="https://googledrive.com/host/0BwbUYqYtCCqmaTQwZTdva2FzeDA/{{tool['Main image file']}}" onerror="if (this.src != '/img/error.jpg') this.src = '/img/error.jpg';">
+<div id="tool_results">
+    <div class="result" ng-repeat="tool in tools">
+        <div class="large-2 medium-3 small-4 columns">
+            <img style="margin-bottom: 10px" src="https://googledrive.com/host/0BwbUYqYtCCqmaTQwZTdva2FzeDA/{{tool['Main image file']}}" onerror="if (this.src != '/img/error.jpg') this.src = '/img/error.jpg';">
+        </div>
+        <div class="large-10 medium-9 small-8 columns">
+            <h4 class="description" ng-bind="tool['Description (EN)']"></h4>
+            <p class="description"><i class="fi-book"></i> Catalogue Page: <span class="description" ng-bind="tool['Catalogue page']"></span></p>
+            <button class="button button red" ng-click="show(tool['Catalogue page'])">View</button>
+        </div>
+        <hr style="max-width: 100rem">
     </div>
-    <div class="large-10 medium-9 small-8 columns">
-        <h4 class="description" ng-bind="tool['Description (EN)']"></h4>
-        <p class="description"><i class="fi-book"></i> Catalogue Page: <span class="description" ng-bind="tool['Catalogue page']"></span></p>
-        <button class="button button alert" ng-click="show(tool['Catalogue page'])">View</button>
-    </div>
-    <hr>
-</div>
-<div ng-show="tool">
-    <a class="link" ng-click="go_back()">< < Go Back</a>
-    <div>
-        <table class="responsive table">
-            <thead>
-                <th>MT Part No.</th>
-                <th>Spindle</th>
-                <th>Ratio</th>
-                <th>Int. Coolant</th>
-                <th>Ext. Coolant</th>
-                <th>Actions</th>
-            </thead>
-            <tbody>
-                <tr ng-repeat="showTool in tool">
-                    {{showTool}}
-                    <td ng-bind="showTool['MT Part No.']"></td>
-                    <td ng-bind="showTool['Spindle_Type']"></td>
-                    <td ng-bind="showTool['Ratio']"></td>
-                    <td ng-bind="showTool['Internal_Coolant']"></td>
-                    <td ng-bind="showTool['External_Coolant']"></td>
-                    <td><i style="cursor: pointer; display: block" class="fi-zoom-in" ng-click="details(showTool['MT Part No.'])">View</i></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <a class="link" ng-click="go_back()">< < Go Back</a>
 </div>

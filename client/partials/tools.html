@@ -1,0 +1,29 @@
+<div class="small-12 columns" id="tool_special_results">
+    <div ng-if="tool != null">
+        <table class="responsive table">
+            <thead>
+                <th>MT Part No.</th>
+                <th>Spindle</th>
+                <th>Ratio</th>
+                <th>Int. Coolant</th>
+                <th>Ext. Coolant</th>
+                <th>Actions</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="showTool in tool" style="cursor: pointer;">
+                    <td show-id="{{showTool['MT Part No.']}}" class="show_tool link link_underline" ng-click="show_tool_details(showTool['MT Part No.'])" ng-bind="showTool['MT Part No.']"></td>
+                    <td show-id="{{showTool['MT Part No.']}}" class="show_tool" ng-click="show_tool_details(showTool['MT Part No.'])" ng-bind="showTool['Spindle_Type']"></td>
+                    <td show-id="{{showTool['MT Part No.']}}" class="show_tool" ng-click="show_tool_details(showTool['MT Part No.'])" ng-bind="showTool['Ratio']"></td>
+                    <td show-id="{{showTool['MT Part No.']}}" class="show_tool" ng-click="show_tool_details(showTool['MT Part No.'])" ng-bind="showTool['Internal_Coolant']"></td>
+                    <td show-id="{{showTool['MT Part No.']}}" class="show_tool" ng-click="show_tool_details(showTool['MT Part No.'])" ng-bind="showTool['External_Coolant']"></td>
+                    <td show-id="{{showTool['MT Part No.']}}" class="show_tool" ng-click="show_tool_details(showTool['MT Part No.'])"><i style="cursor: pointer; display: block" class="fi-zoom-in">View</i></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    $(document).on('click', 'td.show_tool', function(){
+        show_tool($(this).attr('show-id'));
+    })
+</script>

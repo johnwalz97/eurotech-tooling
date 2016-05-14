@@ -3,6 +3,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require('mongoose');
+var nodemailer = require("nodemailer");
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.resolve(__dirname, 'client')));
