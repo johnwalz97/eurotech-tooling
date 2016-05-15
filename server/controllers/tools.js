@@ -45,5 +45,25 @@ module.exports = {
                 res.json(tools);
             }
         })
+    },
+    
+    edit: function(req, res){
+        Tool.findOne({_id: req.body.id}, function(err, tool){
+            if(err){
+                console.log(err);
+            } else {
+                res.json(tool);
+            }
+        })
+    },
+    
+    create: function(req, res){
+        Tool.findOne({}, function(err, tool){
+            if(err){
+                console.log(err);
+            } else {
+                res.json(tool);
+            }
+        })
     }
 }

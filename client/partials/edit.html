@@ -1,0 +1,8 @@
+<div class="row row_white">
+    <form class="small-12 columns row_white">
+        <div ng-repeat="(name, value) in tool">
+            <label ng-bind="name" class="description"></label>
+            <input type="text" ng-model="tool[name]"/>
+        </div>
+    </form>
+</div>

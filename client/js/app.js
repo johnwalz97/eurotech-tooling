@@ -19,6 +19,17 @@ ToolingApp.config(function($routeProvider){
             templateUrl: '/partials/cart.html',
             controller: 'cartController'
         })
+        .when('/thanks', {
+            templateUrl: '/partials/thank_you.html',
+        })
+        .when('/edit', {
+            templateUrl: '/partials/edit.html',
+            controller: 'editController'
+        })
+        .when('/create', {
+            templateUrl: '/partials/edit.html',
+            controller: 'createController'
+        })
         .otherwise({
             redirectTo: '/'
         });

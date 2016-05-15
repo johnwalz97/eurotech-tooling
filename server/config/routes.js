@@ -21,4 +21,10 @@ module.exports = function(app){
     app.post("/showTool", function(req, res){
         tools.show(req, res);
     })
+    app.get("/create", function(req, res){
+        tools.create(req, res);
+    })
+    app.post("/edit", function(req, res){
+        tools.edit(req, res);
+    })
 }

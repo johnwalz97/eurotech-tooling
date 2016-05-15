@@ -31,5 +31,10 @@ ToolingApp.controller("toolController", function($scope, $window, $rootScope, $l
         $window.location.assign('/#/cart');
     }
     
+    $scope.edit = function(){
+        searchFactory.edit_tool_id = $scope.tool_detail._id;
+        $window.location.assign('/#/edit');
+    }
+    
     $scope.tab = 1;
 })
