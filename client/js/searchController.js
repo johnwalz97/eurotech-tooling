@@ -43,7 +43,7 @@ ToolingApp.controller("searchController", function($scope, $rootScope, $location
                         label: 'B550'
                     },{
                         value: 'B565',
-                        label: 'B565'
+                        label: 'B735'
                     },{
                         value: 'B650',
                         label: 'B650'

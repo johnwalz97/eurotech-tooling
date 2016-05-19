@@ -4,6 +4,20 @@ var Tool = mongoose.model('Tool');
 
 //export module
 module.exports = {
+    fix: function(req, res){
+        Tool.find({}, function(err, tools){
+            if(!err){
+                for(var i = 0; i < tools.length; i++){
+                    if(tools[i]['Compatible machines']){
+                        tools[i]['Compatible machines'] = tools[i]['Compatible machines'].replace(/(^,)|(,$)/g, "");
+                        tools[i].save();
+                    }
+                }
+                res.json("Done");
+            }
+        })
+    },
+    
     search: function(req, res){
         if(req.body.make == null || req.body.model == null || req.body.make == '' || req.body.model == ''){
             res.json({error: 'Incomplete search parameters...'});
@@ -63,6 +77,18 @@ module.exports = {
                 console.log(err);
             } else {
                 res.json(tool);
+            }
+        })
+    },
+    
+    save: function(req, res){
+        res.json(req.body);
+        return;
+        Tool.findOneAndUpdate({'MT Part No.': req.body['MT Part No.']}, req.body, {upsert: true, new: true, setDefaultsOnInsert: true}, function(err, tool){
+            if(!err){
+                res.json(result);
+            } else {
+                res.json(err);
             }
         })
     }

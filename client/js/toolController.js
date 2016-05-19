@@ -28,7 +28,7 @@ ToolingApp.controller("toolController", function($scope, $window, $rootScope, $l
         
         $rootScope.cart_quantity = searchFactory.cart.length;
         
-        $window.location.assign('/#/cart');
+        alert("Item added to cart");
     }
     
     $scope.edit = function(){

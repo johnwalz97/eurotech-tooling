@@ -27,4 +27,10 @@ module.exports = function(app){
     app.post("/edit", function(req, res){
         tools.edit(req, res);
     })
+    app.get("/fix", function(req, res) {
+        tools.fix(req, res);
+    })
+    app.post("/save", function(req, res) {
+        tools.save(req, res);
+    })
 }

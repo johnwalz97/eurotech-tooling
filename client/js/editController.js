@@ -11,4 +11,15 @@ ToolingApp.controller("editController", function($scope, $rootScope, $location, 
         },
         'json'
     )
+    
+    $scope.save = function(){
+        $.post(
+            '/save',
+            $scope.tool,
+            function(response){
+                console.log(response);
+                // searchFactory.show_detail(partNo, true);
+            }
+        )
+    }
 })
