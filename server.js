@@ -14,6 +14,6 @@ require('./server/config/mongoose.js');
 var routes_setter = require("./server/config/routes.js");
 routes_setter(app);
 
-app.listen(process.env.PORT, process.env.IP, function() {
+app.listen(80, function() {
     console.log("listening...");
 });

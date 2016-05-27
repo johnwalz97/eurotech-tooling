@@ -29,7 +29,7 @@ module.exports = {
         Tool.find({'OEM': make}, function(err, tools){
             for(var i = 0; i < tools.length; i++){
                 if(tools[i]['Compatible machines'].indexOf(req.body.model) >= 0){
-                    if(tools[i].Catagory == req.body.category || req.body.category == ""){
+                    if(tools[i].Catagory == req.body.category || req.body.category == "all"){
                         if(pages.indexOf(tools[i]['Catalogue page']) == -1){
                             result.push(tools[i]);
                             pages.push(tools[i]['Catalogue page']);
